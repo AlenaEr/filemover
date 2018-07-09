@@ -8,6 +8,7 @@ public class Copy implements Runnable {
    private String filePath;
    //this is directory where to copy
    private String targetDirectory;
+
    public Copy(String filePath, String targetDirectory)
    {
       this.filePath = filePath;
@@ -24,8 +25,9 @@ public class Copy implements Runnable {
          //name of file (without long Path)
          String fileName = getFileName();
          Path sourceDir = Paths.get(filePath);
-         Path targetDir = Paths.get(dist + "\\" + fileName);
+         Path targetDir = Paths.get(dist + File.separator + fileName);
          Files.copy(sourceDir, targetDir);
+         Files.delete(sourceDir);
       } catch (Exception e) {
          e.printStackTrace();
       }
